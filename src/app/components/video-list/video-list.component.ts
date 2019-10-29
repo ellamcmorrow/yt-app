@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { YoutubeService } from "../../services/youtube.service";
-
 @Component({
   selector: 'app-video-list',
   templateUrl: './video-list.component.html',
