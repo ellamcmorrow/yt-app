@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { Subject } from "rxjs";
 import { YoutubeService } from "../../services/youtube.service";
+import { VideoPlayerComponent } from "../video-player/video-player.component";
+
 import { takeUntil } from "rxjs/operators";
 
 @Component({
@@ -17,7 +19,7 @@ export class VideoListComponent {
   ngOnInit() {
     this.videos = [];
     this.youtubeService
-      .getVideosForChanel("UC_LtA_EtCr7Jp5ofOsYt18g", 15)
+      .getVideosForChanel("UCcyq283he07B7_KUX07mmtA", 10)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(list => {
         for (let element of list["items"]) {
