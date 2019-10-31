@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
 import { Subject } from "rxjs";
 import { YoutubeService } from "../../services/youtube.service";
-import { VideoPlayerComponent } from "../video-player/video-player.component";
+// import { VideoPlayerComponent } from "../video-player/video-player.component";
+// import { YoutubeSafeUrlPipe } from '../../pipes/youtube-safe-url.pipe';
 
 import { takeUntil } from "rxjs/operators";
 
