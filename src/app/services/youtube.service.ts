@@ -11,7 +11,8 @@ export class YoutubeService {
 
   constructor(public http: HttpClient) {}
 
-  getVideosForChanel(channel, maxResults): Observable<Object> {
+  //creating an observable data source that can be suscribed to
+  getVideos(channel, maxResults): Observable<Object> {
     let url =
       "https://www.googleapis.com/youtube/v3/search?key=" +
       this.apiKey +

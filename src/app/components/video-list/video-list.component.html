@@ -9,7 +9,7 @@
   </header>
   <div class="row">
     <div *ngFor="let video of videos" class="col-xl-3 col-md-6 mb-4">
-        <iframe width="500" height="500" [src]="'http://www.youtube.com/embed/`${video.id.videoId}`' | youtubeSafeUrl"></iframe>  
+       <app-video-player></app-video-player>
       <div class="card border-0 shadow vh-50">
         <a
           href="https://www.youtube.com/watch?v={{ video.id.videoId }}"
@@ -29,7 +29,7 @@
           </h5>
           <div class="card-text text-black-50">
             {{ video.snippet.description.slice(0, 100) }}
-          </div>
+          </div>>
         </div>
       </div>
     </div>
