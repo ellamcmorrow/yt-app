@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { YoutubeService } from "../../services/youtube.service";
 
 @Component({
@@ -7,6 +7,8 @@ import { YoutubeService } from "../../services/youtube.service";
   styleUrls: ['./video-player.component.css']
 })
 export class VideoPlayerComponent implements OnInit {
+  @Input() videos: any[];
+
 
   constructor(private youtubeService: YoutubeService) { }
 

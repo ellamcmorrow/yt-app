@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { Subject } from "rxjs";
 import { YoutubeService } from "../../services/youtube.service";
 
@@ -10,7 +10,8 @@ import { takeUntil } from "rxjs/operators";
   styleUrls: ["./video-list.component.css"]
 })
 export class VideoListComponent {
-  videos: any[];
+
+  @Input() videos: any[];
   private unsubscribe$: Subject<any> = new Subject();
 //injecting the youtuve service into my component.
   constructor(private youtubeService: YoutubeService) {}
