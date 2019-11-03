@@ -7,7 +7,6 @@ import { VideoPlayerComponent } from "./components/video-player/video-player.com
 import { YoutubeSafeUrlPipe } from "./pipes/youtube-safe-url.pipe";
 import { VideoDetailsComponent } from "./components/video-details/video-details.component";
 import { YoutubeService } from "./services/youtube.service";
-import { Video } from "./models/video";
 
 @NgModule({
   declarations: [

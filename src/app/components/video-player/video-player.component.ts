@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { YoutubeService } from "../../services/youtube.service";
 
 @Component({
@@ -10,7 +10,6 @@ export class VideoPlayerComponent implements OnInit {
   public videos = [];
 
   constructor(private youtubeService: YoutubeService) {}
-
   ngOnInit() {
     this.youtubeService
       .getVideos("UCcyq283he07B7_KUX07mmtA", 10)
@@ -19,6 +18,6 @@ export class VideoPlayerComponent implements OnInit {
           this.videos.push(element);
         }
       });
-    let iframeUrl = "http://www.youtube.com/embed/`${video.id.videoId}`";
+    let iframeUrl = `http://www.youtube.com/embed={{videos.id.videoId}}`;
   }
 }
