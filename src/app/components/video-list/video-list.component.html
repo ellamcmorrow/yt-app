@@ -9,7 +9,6 @@
   </header>
   <div class="row">
     <div *ngFor="let video of videos" class="col-xl-3 col-md-6 mb-4">
-       <app-video-player [videos]="videos"></app-video-player>
       <div class="card border-0 shadow vh-50">
         <a
           href="https://www.youtube.com/watch?v={{ video.id.videoId }}"
@@ -20,19 +19,8 @@
             class="card-img-top"
             alt="..."
         /></a>
-
-        <div class="card-body text-center">
-          <h5 class="card-title mb-0">
-            <a href="https://www.youtube.com/watch?v={{ video.id.videoId }}"
-              >{{ video.snippet.title }}
-            </a>
-          </h5>
-          <div class="card-text text-black-50">
-            {{ video.snippet.description.slice(0, 100) }}
-          </div>>
-        </div>
       </div>
     </div>
+    <!-- /.row -->
   </div>
-  <!-- /.row -->
 </div>

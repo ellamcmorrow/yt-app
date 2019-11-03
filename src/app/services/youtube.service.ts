@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
+import { Video } from "../models/video";
 
 @Injectable({
   providedIn: "root"
@@ -12,7 +13,7 @@ export class YoutubeService {
   constructor(public http: HttpClient) {}
 
   //creating an observable data source that can be suscribed to
-  getVideos(channel, maxResults): Observable<Object> {
+  getVideos(channel, maxResults): Observable<Video[]> {
     let url =
       "https://www.googleapis.com/youtube/v3/search?key=" +
       this.apiKey +
@@ -20,7 +21,7 @@ export class YoutubeService {
       channel +
       "&order=date&part=snippet &type=video,id&maxResults=" +
       maxResults;
-    return this.http.get(url).pipe(
+    return this.http.get<Video[]>(url).pipe(
       map(res => {
         return res;
       })

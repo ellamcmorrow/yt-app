@@ -1,17 +1,23 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { YoutubeService } from "../../services/youtube.service";
 
 @Component({
-  selector: 'app-video-details',
-  templateUrl: './video-details.component.html',
-  styleUrls: ['./video-details.component.css']
+  selector: "app-video-details",
+  templateUrl: "./video-details.component.html",
+  styleUrls: ["./video-details.component.css"]
 })
 export class VideoDetailsComponent implements OnInit {
-  @Input() videos: any[];
+  public videos = [];
 
-  constructor(private youtubeService: YoutubeService) { }
+  constructor(private youtubeService: YoutubeService) {}
 
   ngOnInit() {
+    this.youtubeService
+      .getVideos("UCcyq283he07B7_KUX07mmtA", 10)
+      .subscribe(data => {
+        for (let element of data["items"]) {
+          this.videos.push(element);
+        }
+      });
   }
-
 }
