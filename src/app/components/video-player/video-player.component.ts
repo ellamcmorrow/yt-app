@@ -18,6 +18,5 @@ export class VideoPlayerComponent implements OnInit {
           this.videos.push(element);
         }
       });
-    let iframeUrl = `http://www.youtube.com/embed={{videos.id.videoId}}`;
   }
 }
