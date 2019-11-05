@@ -18,7 +18,7 @@ export class VideoListComponent {
       .getVideos("UCcyq283he07B7_KUX07mmtA", 10)
       .subscribe(data => {
         for (let element of data["items"]) {
-          this.videos.push(element);
+          this.videos.push(element); 
         }
       });
   }
