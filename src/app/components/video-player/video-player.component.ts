@@ -8,6 +8,11 @@ import { YoutubeService } from "../../services/youtube.service";
 })
 export class VideoPlayerComponent implements OnInit {
   public videos = [];
+  //public iframeUrl;
+
+  
+  
+  
 
   constructor(private youtubeService: YoutubeService) {}
   ngOnInit() {
@@ -16,7 +21,10 @@ export class VideoPlayerComponent implements OnInit {
       .subscribe(data => {
         for (let element of data["items"]) {
           this.videos.push(element);
+          let iframeUrl = 'http://www.youtube.com/embed/' + element.id.videoId; 
+
         }
       });
+
   }
 }
