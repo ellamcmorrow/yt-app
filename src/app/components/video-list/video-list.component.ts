@@ -22,4 +22,8 @@ export class VideoListComponent {
         }
       });
   }
+
+  setUrl(url) {
+    this.youtubeService.setVideUrl(url);
+  }
 }
