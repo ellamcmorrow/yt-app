@@ -24,7 +24,9 @@ export class VideoPlayerComponent implements OnInit {
           this.videos.push(element);
         }
       });
-
+      this.youtubeService.videoUrlSource.subscribe((url) => {
+        this.iframeUrl = url;
+      })
   }
 
   updateUrl() {

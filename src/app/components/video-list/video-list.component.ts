@@ -7,8 +7,7 @@ import { YoutubeService } from "../../services/youtube.service";
   styleUrls: ["./video-list.component.css"]
 })
 export class VideoListComponent {
-  public videos = [];
-
+  video: Video;
   // private unsubscribe$: Subject<any> = new Subject();
   //injecting the youtuve service into my component.
   constructor(private youtubeService: YoutubeService) {}
@@ -16,14 +15,10 @@ export class VideoListComponent {
   ngOnInit() {
     this.youtubeService
       .getVideos("UCcyq283he07B7_KUX07mmtA", 10)
-      .subscribe(data => {
-        for (let element of data["items"]) {
-          this.videos.push(element); 
-        }
-      });
+      this.youtubeService.dataStream.subscribe(video => this.Video = video)
   }
 
   setUrl(url) {
-    this.youtubeService.setVideUrl(url);
+    this.youtubeService.setVideoUrl(url);
   }
 }
