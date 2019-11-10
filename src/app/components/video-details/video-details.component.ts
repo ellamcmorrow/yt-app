@@ -13,9 +13,7 @@ export class VideoDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.youtubeService
-      .getVideos({
-        channel: { channel: "UCcyq283he07B7_KUX07mmtA", maxResults: 10 }
-      })
+      .getVideos("UCcyq283he07B7_KUX07mmtA", 10)
       .subscribe(data => {
         for (let element of data["items"]) {
           this.videos.push(element);

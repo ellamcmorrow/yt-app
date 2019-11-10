@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { YoutubeService } from "../../services/youtube.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-video-player",
@@ -10,13 +11,12 @@ export class VideoPlayerComponent implements OnInit {
   public videos = [];
   public iframeUrl;
   public videoItems;
+  subscription: Subscription;
 
   constructor(private youtubeService: YoutubeService) {}
   ngOnInit() {
-    this.youtubeService
-      .getVideos({
-        channel: { channel: "UCcyq283he07B7_KUX07mmtA", maxResults: 10 }
-      })
+    this.subscription = this.youtubeService
+      .getVideos("UCcyq283he07B7_KUX07mmtA", 10)
       .subscribe(data => {
         this.videoItems = data;
         this.iframeUrl =
@@ -24,14 +24,15 @@ export class VideoPlayerComponent implements OnInit {
         for (let element of data["items"]) {
           this.videos.push(element);
         }
+        this.youtubeService.videoUrlSource.subscribe(url => {
+          this.iframeUrl = url;
+        });
       });
-    this.youtubeService.videoUrlSource.subscribe(url => {
-      this.iframeUrl = url;
-    });
-  }
-
-  updateUrl() {
-    this.iframeUrl =
-      "http://www.youtube.com/embed/" + this.videoItems.items[2].id.videoId;
   }
 }
+
+// updateUrl() {
+//   this.iframeUrl =
+//     "http://www.youtube.com/embed/" + this.videoItems.items[2].id.videoId;
+// }
+//}

@@ -8,22 +8,18 @@ import { Subscription } from "rxjs";
   styleUrls: ["./video-list.component.css"]
 })
 export class VideoListComponent {
+  public videos = [];
+
   video: Video;
   // private unsubscribe$: Subject<any> = new Subject();
   //injecting the youtuve service into my component.
   constructor(private youtubeService: YoutubeService) {}
   //push the videos returned from api into a video array.
   ngOnInit() {
-    this.youtubeService.getVideos({
-      channel: {
-        channel: "UCcyq283he07B7_KUX07mmtA",
-        maxResults: 10
-      }
-    });
-    this.youtubeService.dataStream.subscribe(video => (this.Video = video));
+    this.youtubeService.getVideos("UCcyq283he07B7_KUX07mmtA", 10);
   }
 
-  setUrl(url) {
-    this.youtubeService.setVideoUrl(url);
-  }
+  // setUrl(url) {
+  //   this.youtubeService.setVideoUrl(url);
+  // }
 }
