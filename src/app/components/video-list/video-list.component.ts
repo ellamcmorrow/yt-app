@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { YoutubeService } from "../../services/youtube.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-video-list",
@@ -13,9 +14,13 @@ export class VideoListComponent {
   constructor(private youtubeService: YoutubeService) {}
   //push the videos returned from api into a video array.
   ngOnInit() {
-    this.youtubeService
-      .getVideos("UCcyq283he07B7_KUX07mmtA", 10)
-      this.youtubeService.dataStream.subscribe(video => this.Video = video)
+    this.youtubeService.getVideos({
+      channel: {
+        channel: "UCcyq283he07B7_KUX07mmtA",
+        maxResults: 10
+      }
+    });
+    this.youtubeService.dataStream.subscribe(video => (this.Video = video));
   }
 
   setUrl(url) {
