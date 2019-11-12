@@ -1,18 +1,20 @@
 <div class="row item">
-  <div *ngFor="let video of videos" class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-0 shadow vh-50">
+  <h2>Video App </h2>
+  <ul class="videos">
+    <li *ngFor="let video of videos" (click)="onSelect(video)">           
       <a
-        href="https://www.youtube.com/watch?v={{ video.id.videoId }}"
-        target="_blank"
+      href="https://www.youtube.com/watch?v={{ video.id.videoId }}"
+      target="_blank"
       >
-        <img
-          [src]="video.snippet.thumbnails.medium.url"
-          class="card-img-top"
-          alt="..."
+      <img
+      [src]="video.snippet.thumbnails.medium.url"
+      class="card-img-top"
+      alt="..."
       /></a>
-      <!-- </div>
-    <button (click)="setUrl('https://www.youtube.com/watch?v' + video.id.videoId)">Set URL</button>
-  </div> -->
-    </div>
-  </div>
+    </li>
+  </ul>
 </div>
+
+<!-- </div>
+  <button (click)="setUrl('https://www.youtube.com/watch?v' + video.id.videoId)">Set URL</button>
+</div> -->

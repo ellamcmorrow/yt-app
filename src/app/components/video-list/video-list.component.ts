@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { YoutubeService } from "../../services/youtube.service";
-import { Subscription } from "rxjs";
+import { Subject } from "rxjs";
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: "app-video-list",
@@ -8,18 +9,32 @@ import { Subscription } from "rxjs";
   styleUrls: ["./video-list.component.css"]
 })
 export class VideoListComponent {
-  public videos = [];
+  videos: any[];
+  private datastream$: Subject<any> = new Subject();
+  public selectedVideo;
 
-  video: Video;
-  // private unsubscribe$: Subject<any> = new Subject();
-  //injecting the youtuve service into my component.
+  
+  //injecting the youtube service into my component.
   constructor(private youtubeService: YoutubeService) {}
   //push the videos returned from api into a video array.
   ngOnInit() {
-    this.youtubeService.getVideos("UCcyq283he07B7_KUX07mmtA", 10);
+    this.videos = [];
+    this.youtubeService
+    .getVideos('UCcyq283he07B7_KUX07mmtA', 15)
+    .pipe(takeUntil(this.datastream$))
+    .subscribe(data => {
+      for (let element of data["items"]) {
+        this.videos.push(element)
+      }
+    });
+    
   }
 
-  // setUrl(url) {
-  //   this.youtubeService.setVideoUrl(url);
-  // }
 }
+
+
+
+//   setUrl(url) {
+//   this.youtubeService.setVideoUrl(url);
+//    }
+// 
